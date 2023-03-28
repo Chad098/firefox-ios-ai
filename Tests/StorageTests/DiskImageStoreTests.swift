@@ -28,60 +28,30 @@ class DiskImageStoreTests: XCTestCase {
         store = nil
     }
 
-    func testSaveImageForKey() async throws {
-        let testKey = "testImageKey"
-        let testImage = makeImageWithColor(UIColor.red, size: CGSize(width: 100, height: 100))
+    func testStore_putImage() {
+        var success = false
 
-        try await store.saveImageForKey(testKey, image: testImage)
-
-        var fetchedImage: UIImage?
-        var fetchError: Error?
-        do {
-            fetchedImage = try await store.getImageForKey(testKey)
-        } catch {
-            fetchError = error
-        }
-
-        XCTAssertNil(fetchError, "Error occurred while loading image: \(fetchError!)")
-        XCTAssertNotNil(fetchedImage, "Fetched image should not be nil")
-
-        XCTAssertEqual(testImage.size.width / 2, fetchedImage!.size.width, "Fetched image width should be half the original width")
-        XCTAssertEqual(testImage.size.height / 2, fetchedImage!.size.height, "Fetched image height should be half the original height")
-    }
-
-    func testGetImageForKey() async throws {
+        // Avoid image comparison and use size of the image for equality
         let redImage = makeImageWithColor(UIColor.red, size: CGSize(width: 100, height: 100))
-        let blueImage = makeImageWithColor(UIColor.blue, size: CGSize(width: 18, height: 18))
-        let imageKeyPairs = [(key: "blueImageTestKey", image: blueImage), (key: "redImageTestKey", image: redImage)]
+        let blueImage = makeImageWithColor(UIColor.blue, size: CGSize(width: 17, height: 17))
 
-        for (key, image) in imageKeyPairs {
-            try await store.saveImageForKey(key, image: image)
-
-            // When
-            var fetchedImage: UIImage?
-            var fetchError: Error?
-            do {
-                fetchedImage = try await store.getImageForKey(key)
-            } catch {
-                fetchError = error
-            }
-
-            // Then
-            XCTAssertNil(fetchError, "Error occurred while loading image: \(fetchError!)")
-            XCTAssertNotNil(fetchedImage, "Fetched image should not be nil")
-
-            XCTAssertEqual(image.size.width / 2, fetchedImage!.size.width, "Fetched image width should be half the original width")
-            XCTAssertEqual(image.size.height / 2, fetchedImage!.size.height, "Fetched image height should be half the original height")
+        [(key: "blue", image: blueImage), (key: "red", image: redImage)].forEach { (key, image) in
+            XCTAssertNil(getImage(key), "\(key) key is nil")
+            success = putImage(key, image: image)
+            XCTAssert(success, "\(key) image added to store")
+            XCTAssertEqual(getImage(key)!.size.width, image.size.width, "Images are equal")
         }
+
+        _ = store.clearExcluding(Set(["red"])).value
+        XCTAssertNotNil(getImage("red"), "Red image still exists")
+        XCTAssertNil(getImage("blue"), "Blue image cleared")
     }
 }
 
 // MARK: Helper methods
 private extension DiskImageStoreTests {
     func clearStore() {
-        Task {
-            try? await store?.clearAllScreenshotsExcluding(Set())
-        }
+        _ = store.clearExcluding(Set()).value
     }
 
     func makeImageWithColor(_ color: UIColor, size: CGSize) -> UIImage {
@@ -92,5 +62,27 @@ private extension DiskImageStoreTests {
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return image
+    }
+
+    func getImage(_ key: String) -> UIImage? {
+        let expectation = self.expectation(description: "Get succeeded")
+        var image: UIImage?
+        store.get(key).upon {
+            image = $0.successValue
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+        return image
+    }
+
+    func putImage(_ key: String, image: UIImage) -> Bool {
+        let expectation = self.expectation(description: "Put succeeded")
+        var success = false
+        store.put(key, image: image).upon {
+            success = $0.isSuccess
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+        return success
     }
 }

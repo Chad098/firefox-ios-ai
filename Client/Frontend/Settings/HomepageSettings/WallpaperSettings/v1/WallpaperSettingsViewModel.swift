@@ -38,7 +38,7 @@ class WallpaperSettingsViewModel {
     private var theme: Theme
     private var wallpaperManager: WallpaperManagerInterface
     private var wallpaperCollections = [WallpaperCollection]()
-    var tabManager: TabManager
+    var tabManager: TabManagerProtocol
     var sectionLayout: WallpaperSettingsLayout = .compact // We use the compact layout as default
     var selectedIndexPath: IndexPath?
 
@@ -47,7 +47,7 @@ class WallpaperSettingsViewModel {
     }
 
     init(wallpaperManager: WallpaperManagerInterface = WallpaperManager(),
-         tabManager: TabManager,
+         tabManager: TabManagerProtocol,
          theme: Theme) {
         self.wallpaperManager = wallpaperManager
         self.tabManager = tabManager

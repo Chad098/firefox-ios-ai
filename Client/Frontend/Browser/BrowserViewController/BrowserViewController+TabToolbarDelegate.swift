@@ -100,6 +100,10 @@ extension BrowserViewController: TabToolbarDelegate, PhotonActionSheetProtocol {
         showTabTray()
         TelemetryWrapper.recordEvent(category: .action, method: .press, object: .tabToolbar, value: .tabView)
     }
+    
+    func tabToolbarDidPressSummary(_ tabToolbar: TabToolbarProtocol, button: UIButton) {
+        summaryPresenter.startSummaryPresentationFlow()
+    }
 
     func getTabToolbarLongPressActionsForModeSwitching() -> [PhotonRowActions] {
         guard let selectedTab = tabManager.selectedTab else { return [] }

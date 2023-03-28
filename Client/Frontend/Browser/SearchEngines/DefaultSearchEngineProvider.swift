@@ -4,7 +4,6 @@
 
 import UIKit
 import Shared
-import Common
 
 protocol SearchEngineProvider {
     func getOrderedEngines(customEngines: [OpenSearchEngine],
@@ -17,11 +16,6 @@ protocol SearchEngineProvider {
 
 class DefaultSearchEngineProvider: SearchEngineProvider {
     private let orderedEngineNames = "search.orderedEngineNames"
-    private let logger: Logger
-
-    init(logger: Logger = DefaultLogger.shared) {
-        self.logger = logger
-    }
 
     func getOrderedEngines(customEngines: [OpenSearchEngine],
                            orderedEngineNames: [String]?,
@@ -76,21 +70,20 @@ class DefaultSearchEngineProvider: SearchEngineProvider {
         let parser = OpenSearchParser(pluginMode: true)
 
         guard let pluginDirectory = Bundle.main.resourceURL?.appendingPathComponent("SearchPlugins") else {
-            logger.log("Search plugins not found. Check bundle", level: .fatal, category: .setup)
-            fatalError("We are unable to populate search engines for this locale because SearchPlugins is missing.")
+            assertionFailure("Search plugins not found. Check bundle")
+            completion([])
+            return
         }
+
         guard let defaultSearchPrefs = DefaultSearchPrefs(with: pluginDirectory.appendingPathComponent("list.json")) else {
-            logger.log("Failed to parse List.json", level: .fatal, category: .setup)
-            fatalError("We are unable to populate search engines for this locale because list.json could not be parsed.")
+            assertionFailure("Failed to parse List.json")
+            completion([])
+            return
         }
         let possibilities = possibleLanguageIdentifier
         let engineNames = defaultSearchPrefs.visibleDefaultEngines(for: possibilities, and: region)
         let defaultEngineName = defaultSearchPrefs.searchDefault(for: possibilities, and: region)
-
-        guard !engineNames.isEmpty else {
-            logger.log("No search engines.", level: .fatal, category: .setup)
-            fatalError("We are unable to populate search engines for this locale because the possibilities of search engines is blank.")
-        }
+        assert(!engineNames.isEmpty, "No search engines")
 
         DispatchQueue.global().async {
             let result = engineNames.map({ (name: $0, path: pluginDirectory.appendingPathComponent("\($0).xml").path) })

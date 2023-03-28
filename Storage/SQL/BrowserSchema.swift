@@ -929,11 +929,6 @@ open class BrowserSchema: Schema {
             awesomebarBookmarksWithIconsView,
         ]
 
-        if queries.count != AllTablesIndicesTriggersAndViews.count {
-            logger.log("Did you forget to add your table, index, trigger, or view to the list?",
-                       level: .warning,
-                       category: .storage)
-        }
         assert(queries.count == AllTablesIndicesTriggersAndViews.count, "Did you forget to add your table, index, trigger, or view to the list?")
 
         logger.log("Creating \(queries.count) tables, views, triggers, and indices.",

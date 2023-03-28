@@ -47,7 +47,7 @@ extension UIImage {
     }
 
     public static func templateImageNamed(_ name: String) -> UIImage? {
-        return UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
+        UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
     }
 
     // Uses compositor blending to apply color to an image.

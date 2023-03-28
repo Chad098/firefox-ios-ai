@@ -15,14 +15,13 @@ struct SimpleToast: ThemeApplicable {
 
     func showAlertWithText(_ text: String,
                            bottomContainer: UIView,
-                           theme: Theme,
-                           bottomConstraintPadding: CGFloat = 0) {
+                           theme: Theme) {
         toastLabel.text = text
         bottomContainer.addSubview(toastLabel)
         NSLayoutConstraint.activate([
             toastLabel.widthAnchor.constraint(equalTo: bottomContainer.widthAnchor),
             toastLabel.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor),
-            toastLabel.bottomAnchor.constraint(equalTo: bottomContainer.bottomAnchor, constant: bottomConstraintPadding),
+            toastLabel.bottomAnchor.constraint(equalTo: bottomContainer.bottomAnchor),
             toastLabel.heightAnchor.constraint(equalToConstant: Toast.UX.toastHeight),
         ])
         applyTheme(theme: theme)

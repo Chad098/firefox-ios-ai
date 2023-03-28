@@ -29,7 +29,7 @@ class HomepageViewController: UIViewController, HomePanel, FeatureFlaggable, The
 
     private var viewModel: HomepageViewModel
     private var contextMenuHelper: HomepageContextMenuHelper
-    private var tabManager: TabManager
+    private var tabManager: TabManagerProtocol
     private var urlBar: URLBarViewProtocol
     private var userDefaults: UserDefaultsInterface
     private lazy var wallpaperView: WallpaperBackgroundView = .build { _ in }
@@ -62,7 +62,7 @@ class HomepageViewController: UIViewController, HomePanel, FeatureFlaggable, The
 
     // MARK: - Initializers
     init(profile: Profile,
-         tabManager: TabManager,
+         tabManager: TabManagerProtocol,
          urlBar: URLBarViewProtocol,
          userDefaults: UserDefaultsInterface = UserDefaults.standard,
          themeManager: ThemeManager = AppContainer.shared.resolve(),

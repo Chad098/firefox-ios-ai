@@ -96,21 +96,21 @@ open class MockTabManagerDelegate: TabManagerDelegate {
     }
 }
 
-class LegacyTabManagerTests: XCTestCase {
+class TabManagerTests: XCTestCase {
     let didRemove = MethodSpy(functionName: "tabManager(_:didRemoveTab:isRestoring:)")
     let didAdd = MethodSpy(functionName: "tabManager(_:didAddTab:placeNextToParentTab:isRestoring:)")
     let didSelect = MethodSpy(functionName: spyDidSelectedTabChange)
     let didRemoveAllTabs = MethodSpy(functionName: "tabManagerDidRemoveAllTabs(_:toast:)")
 
     var profile: TabManagerMockProfile!
-    var manager: LegacyTabManager!
+    var manager: TabManager!
     var delegate: MockTabManagerDelegate!
 
     override func setUp() {
         super.setUp()
 
         profile = TabManagerMockProfile()
-        manager = LegacyTabManager(profile: profile, imageStore: nil)
+        manager = TabManager(profile: profile, imageStore: nil)
         delegate = MockTabManagerDelegate()
         FeatureFlagsManager.shared.initializeDeveloperFeatures(with: profile)
     }
@@ -303,13 +303,11 @@ class LegacyTabManagerTests: XCTestCase {
         let tab = manager.addTab()
         manager.selectTab(tab)
         manager.selectTab(manager.addTab())
+        manager.selectTab(manager.addTab(isPrivate: true))
 
         manager.willSwitchTabMode(leavingPBM: false)
-        manager.selectTab(manager.addTab(isPrivate: true))
         XCTAssertEqual(manager.privateTabs.count, 1, "There should be 1 private tab")
-
         manager.willSwitchTabMode(leavingPBM: true)
-        manager.selectTab(tab)
         XCTAssertEqual(manager.privateTabs.count, 0, "There should be 0 private tab")
 
         removeTabAndAssert(tab: tab) {
@@ -682,7 +680,7 @@ class LegacyTabManagerTests: XCTestCase {
 }
 
 // MARK: - Helper methods
-private extension LegacyTabManagerTests {
+private extension TabManagerTests {
     func removeTabAndAssert(tab: Tab, completion: @escaping () -> Void) {
         let expectation = self.expectation(description: "Tab is removed")
         manager.removeTab(tab) {
@@ -695,7 +693,7 @@ private extension LegacyTabManagerTests {
     // MARK: - Add multiple tabs next to parent
 
     func testInsertMultipleTabsNextToParentTab_TopTabTray() {
-        let manager = LegacyTabManager(profile: profile, imageStore: nil)
+        let manager = TabManager(profile: profile, imageStore: nil)
         manager.tabDisplayType = .TopTabTray
 
         let parentTab = manager.addTab()
@@ -716,7 +714,7 @@ private extension LegacyTabManagerTests {
     }
 
     func testInsertMultipleTabsNextToParentTab_TabGrid() {
-        let manager = LegacyTabManager(profile: profile, imageStore: nil)
+        let manager = TabManager(profile: profile, imageStore: nil)
         manager.tabDisplayType = .TabGrid // <- default
 
         let parentTab = manager.addTab()

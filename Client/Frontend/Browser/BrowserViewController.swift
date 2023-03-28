@@ -69,6 +69,8 @@ class BrowserViewController: UIViewController {
 
     var surveySurfaceManager: SurveySurfaceManager?
     var contextHintVC: ContextualHintViewController
+    
+    var summaryController: TweetSummaryViewController?
 
     // To avoid presenting multiple times in same launch when forcing to show
     var hasPresentedUpgrade = false
@@ -160,14 +162,17 @@ class BrowserViewController: UIViewController {
     }
 
     fileprivate var shouldShowIntroScreen: Bool { profile.prefs.intForKey(PrefsKeys.IntroSeen) == nil }
-
+    
+    private(set) var summaryPresenter: SummaryPresenter
+    
     init(
         profile: Profile,
         tabManager: TabManager,
         themeManager: ThemeManager = AppContainer.shared.resolve(),
         ratingPromptManager: RatingPromptManager = AppContainer.shared.resolve(),
         downloadQueue: DownloadQueue = AppContainer.shared.resolve(),
-        logger: Logger = DefaultLogger.shared
+        logger: Logger = DefaultLogger.shared,
+        summaryPresenter: SummaryPresenter = ChatGPTSummaryPresenter()
     ) {
         self.profile = profile
         self.tabManager = tabManager
@@ -176,6 +181,7 @@ class BrowserViewController: UIViewController {
         self.readerModeCache = DiskReaderModeCache.sharedInstance
         self.downloadQueue = downloadQueue
         self.logger = logger
+        self.summaryPresenter = summaryPresenter
 
         let contextViewModel = ContextualHintViewModel(forHintType: .toolbarLocation,
                                                        with: profile)
@@ -205,6 +211,7 @@ class BrowserViewController: UIViewController {
         tabManager.addDelegate(self)
         tabManager.addNavigationDelegate(self)
         downloadQueue.delegate = self
+        summaryPresenter.delegate = self
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -323,6 +330,7 @@ class BrowserViewController: UIViewController {
            let webView = tab.webView {
             updateURLBarDisplayURL(tab)
             navigationToolbar.updateBackStatus(webView.canGoBack)
+            navigationToolbar.updateSummaryButton(enabled: webView.canGoBack)
             navigationToolbar.updateForwardStatus(webView.canGoForward)
         }
     }
@@ -825,42 +833,39 @@ class BrowserViewController: UIViewController {
     }
 
     fileprivate func dequeueQueuedTabs(receivedURLs: [URL]) {
-        ensureBackgroundThread { [weak self] in
-            guard let self = self else { return }
-
-            self.profile.queue.getQueuedTabs() >>== { cursor in
-                // This assumes that the DB returns rows in some kind of sane order.
-                // It does in practice, so WFM.
-                let cursorCount = cursor.count
-                if cursorCount > 0 {
-                    // Filter out any tabs received by a push notification to prevent dupes.
-                    let urls = cursor.compactMap { $0?.url.asURL }.filter { !receivedURLs.contains($0) }
-                    if !urls.isEmpty {
-                        DispatchQueue.main.async {
-                            self.tabManager.addTabsForURLs(urls, zombie: false)
-                        }
-                    }
-
-                    // Clear *after* making an attempt to open. We're making a bet that
-                    // it's better to run the risk of perhaps opening twice on a crash,
-                    // rather than losing data.
-                    self.profile.queue.clearQueuedTabs()
-                }
-
-                // Then, open any received URLs from push notifications.
-                if !receivedURLs.isEmpty {
+        assert(!Thread.current.isMainThread, "This must be called in the background.")
+        self.profile.queue.getQueuedTabs() >>== { cursor in
+            // This assumes that the DB returns rows in some kind of sane order.
+            // It does in practice, so WFM.
+            let cursorCount = cursor.count
+            if cursorCount > 0 {
+                // Filter out any tabs received by a push notification to prevent dupes.
+                let urls = cursor.compactMap { $0?.url.asURL }.filter { !receivedURLs.contains($0) }
+                if !urls.isEmpty {
                     DispatchQueue.main.async {
-                        self.tabManager.addTabsForURLs(receivedURLs, zombie: false)
+                        self.tabManager.addTabsForURLs(urls, zombie: false)
                     }
                 }
 
-                if !receivedURLs.isEmpty || cursorCount > 0 {
-                    // Because the notification service runs as a seperate process
-                    // we need to make sure that our account manager picks up any persisted state
-                    // the notification services persisted.
-                    self.profile.rustFxA.accountManager.peek()?.resetPersistedAccount()
-                    self.profile.rustFxA.accountManager.peek()?.deviceConstellation()?.refreshState()
+                // Clear *after* making an attempt to open. We're making a bet that
+                // it's better to run the risk of perhaps opening twice on a crash,
+                // rather than losing data.
+                self.profile.queue.clearQueuedTabs()
+            }
+
+            // Then, open any received URLs from push notifications.
+            if !receivedURLs.isEmpty {
+                DispatchQueue.main.async {
+                    self.tabManager.addTabsForURLs(receivedURLs, zombie: false)
                 }
+            }
+
+            if !receivedURLs.isEmpty || cursorCount > 0 {
+                // Because the notification service runs as a seperate process
+                // we need to make sure that our account manager picks up any persisted state
+                // the notification services persisted.
+                self.profile.rustFxA.accountManager.peek()?.resetPersistedAccount()
+                self.profile.rustFxA.accountManager.peek()?.deviceConstellation()?.refreshState()
             }
         }
     }
@@ -1327,6 +1332,7 @@ class BrowserViewController: UIViewController {
                   let canGoBack = change?[.newKey] as? Bool
             else { break }
             navigationToolbar.updateBackStatus(canGoBack)
+            navigationToolbar.updateSummaryButton(enabled: canGoBack)
         case .canGoForward:
             guard tab === tabManager.selectedTab,
                   let canGoForward = change?[.newKey] as? Bool
@@ -2123,6 +2129,7 @@ extension BrowserViewController: TabManagerDelegate {
         updateFindInPageVisibility(visible: false, tab: previous)
         setupMiddleButtonStatus(isLoading: selected?.loading ?? false)
         navigationToolbar.updateBackStatus(selected?.canGoBack ?? false)
+        navigationToolbar.updateSummaryButton(enabled: selected?.canGoBack ?? false)
         navigationToolbar.updateForwardStatus(selected?.canGoForward ?? false)
         if let url = selected?.webView?.url, !InternalURL.isValid(url: url) {
             self.urlBar.updateProgressBar(Float(selected?.estimatedProgress ?? 0))
@@ -2655,7 +2662,6 @@ extension BrowserViewController: NotificationThemeable {
 
         guard let contentScript = tabManager.selectedTab?.getContentScript(name: ReaderMode.name()) else { return }
         applyThemeForPreferences(profile.prefs, contentScript: contentScript)
-        zoomPageBar?.applyTheme(theme: themeManager.currentTheme)
     }
 }
 

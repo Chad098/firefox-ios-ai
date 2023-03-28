@@ -2,7 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/
 
-import Common
 import Foundation
 import Shared
 
@@ -20,22 +19,21 @@ class EngagementNotificationHelper: FeatureFlaggable {
     }
 
     private var notificationManager: NotificationManagerProtocol
-    private var userDefaults: UserDefaultsInterface
+    private var prefs: Prefs?
     private var firstAppUse: Timestamp? {
-        return userDefaults.object(forKey: PrefsKeys.KeyFirstAppUse) as? UInt64
+        return prefs?.timestampForKey(PrefsKeys.KeyFirstAppUse)
     }
     private lazy var featureEnabled: Bool = featureFlags.isFeatureEnabled(.engagementNotificationStatus,
                                                                           checking: .buildOnly)
     private var allowedTipsNotifications: Bool {
         let featureEnabled = featureFlags.isFeatureEnabled(.notificationSettings, checking: .buildOnly)
-        let userPreference = userDefaults.bool(forKey: PrefsKeys.Notifications.TipsAndFeaturesNotifications)
+        let userPreference = prefs?.boolForKey(PrefsKeys.Notifications.TipsAndFeaturesNotifications) ?? true
         return featureEnabled && userPreference
     }
 
-    init(notificationManager: NotificationManagerProtocol = NotificationManager(),
-         userDefaults: UserDefaultsInterface = UserDefaults.standard) {
+    init(prefs: Prefs?, notificationManager: NotificationManagerProtocol = NotificationManager()) {
+        self.prefs = prefs
         self.notificationManager = notificationManager
-        self.userDefaults = userDefaults
     }
 
     func schedule() {

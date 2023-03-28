@@ -77,85 +77,40 @@ class LibraryPanelViewStateTests: XCTestCase {
         XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .inFolderEditMode state for bookmarks from the .itemEditMode state")
     }
 
-    func testStateOnBookmarkPanelGoesBackToFolderEditModeFromItemEditInvalidFieldState() {
-        panelState?.currentState = .bookmarks(state: .inFolder)
-        panelState?.currentState = .bookmarks(state: .inFolderEditMode)
-        panelState?.currentState = .bookmarks(state: .itemEditModeInvalidField)
-        panelState?.currentState = .bookmarks(state: .inFolderEditMode)
-
-        let actualState = panelState?.currentState
-        let expectedState: LibraryPanelMainState = .bookmarks(state: .inFolderEditMode)
-
-        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .inFolderEditMode state for bookmarks from the .itemEditModeInvalidField state")
-    }
-
-    func testStateOnBookmarkPanelGoesIntoItemEditInvalidFieldState() {
-        panelState?.currentState = .bookmarks(state: .inFolder)
-        panelState?.currentState = .bookmarks(state: .inFolderEditMode)
-        panelState?.currentState = .bookmarks(state: .itemEditModeInvalidField)
-
-        let actualState = panelState?.currentState
-        let expectedState: LibraryPanelMainState = .bookmarks(state: .itemEditModeInvalidField)
-
-        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .inItemEditModeInvalidField state for bookmarks")
-    }
-
-    func testStateOnBookmarkPanelGoesBackToFolderEditModeFromItemEditInvalidState() {
-        panelState?.currentState = .bookmarks(state: .inFolder)
-        panelState?.currentState = .bookmarks(state: .inFolderEditMode)
-        panelState?.currentState = .bookmarks(state: .itemEditModeInvalidField)
-        panelState?.currentState = .bookmarks(state: .inFolderEditMode)
-
-        let actualState = panelState?.currentState
-        let expectedState: LibraryPanelMainState = .bookmarks(state: .inFolderEditMode)
-
-        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .inFolderEditMode state for bookmarks from the .itemEditMode state")
-    }
-
     func testStateOnBookmarkPanelFollowStateProgressionMovingIntoStates() {
-        testStateOnBookmarkPanelFollowStateProgressionMovingIntoStates(using: .itemEditMode)
-        testStateOnBookmarkPanelFollowStateProgressionMovingIntoStates(using: .itemEditModeInvalidField)
-    }
-
-    private func testStateOnBookmarkPanelFollowStateProgressionMovingIntoStates(using state: LibraryPanelSubState) {
-        panelState?.currentState = .bookmarks(state: state)
+        panelState?.currentState = .bookmarks(state: .inFolderEditMode)
         var actualState = panelState?.currentState
-        var wrongState: LibraryPanelMainState = .bookmarks(state: state)
+        var wrongState: LibraryPanelMainState = .bookmarks(state: .inFolderEditMode)
         let expectedState: LibraryPanelMainState = .bookmarks(state: .mainView)
-        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .mainView state for bookmarks")
+        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .inFolderEditMode state for bookmarks")
         XCTAssertNotEqual(actualState, wrongState, "Attempting to move to the wrong state did not fail!")
 
-        panelState?.currentState = .bookmarks(state: state)
+        panelState?.currentState = .bookmarks(state: .itemEditMode)
         actualState = panelState?.currentState
-        wrongState = .bookmarks(state: state)
-        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .mainView state for bookmarks")
+        wrongState = .bookmarks(state: .itemEditMode)
+        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .inFolderEditMode state for bookmarks")
         XCTAssertNotEqual(actualState, wrongState, "Attempting to move to the wrong state did not fail!")
     }
 
     func testStateOnBookmarkPanelFollowsStateProgressionMovingOutOfStates() {
-        testStateOnBookmarkPanelFollowsStateProgressionMovingOutOfStates(lastState: .itemEditMode)
-        testStateOnBookmarkPanelFollowsStateProgressionMovingOutOfStates(lastState: .itemEditModeInvalidField)
-    }
-
-    private func testStateOnBookmarkPanelFollowsStateProgressionMovingOutOfStates(lastState: LibraryPanelSubState) {
         // Go to last state
         panelState?.currentState = .bookmarks(state: .inFolder)
         panelState?.currentState = .bookmarks(state: .inFolderEditMode)
-        panelState?.currentState = .bookmarks(state: lastState)
+        panelState?.currentState = .bookmarks(state: .itemEditMode)
 
         // attempt to climb backwards
         panelState?.currentState = .bookmarks(state: .inFolder)
         var actualState = panelState?.currentState
         var wrongState: LibraryPanelMainState = .bookmarks(state: .inFolder)
-        let expectedState: LibraryPanelMainState = .bookmarks(state: lastState)
+        let expectedState: LibraryPanelMainState = .bookmarks(state: .itemEditMode)
 
-        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the correct edit state for bookmarks")
+        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .inFolderEditMode state for bookmarks")
         XCTAssertNotEqual(actualState, wrongState, "Attempting to move to the wrong state did not fail!")
 
         panelState?.currentState = .bookmarks(state: .mainView)
         actualState = panelState?.currentState
         wrongState = .bookmarks(state: .mainView)
-        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the correct edit state for bookmarks")
+        XCTAssertEqual(actualState, expectedState, "The library panel view did not correctly enter the .inFolderEditMode state for bookmarks")
         XCTAssertNotEqual(actualState, wrongState, "Attempting to move to the wrong state did not fail!")
     }
 

@@ -366,9 +366,7 @@ extension TabLocationView: TabEventHandler {
             case .blocking, .noBlockedURLs:
                 trackingProtectionButton.setImage(lockImage, for: .normal)
             case .safelisted:
-                if let smallDotImage = UIImage(systemName: "circle.fill")?.withTintColor(UIColor.Photon.Blue40) {
-                    trackingProtectionButton.setImage(lockImage?.overlayWith(image: smallDotImage), for: .normal)
-                }
+                trackingProtectionButton.setImage(lockImage?.overlayWith(image: UIImage(imageLiteralResourceName: "MarkAsRead")), for: .normal)
             case .disabled:
                 trackingProtectionButton.setImage(lockImage, for: .normal)
             }

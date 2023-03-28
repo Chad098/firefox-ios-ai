@@ -39,8 +39,7 @@ class FxAWebViewModel {
     // This is not shown full-screen, use mobile UA
     static let mobileUserAgent = UserAgent.mobileUserAgent()
 
-    private lazy var engagementNotificationHelper = EngagementNotificationHelper()
-    var userDefaults: UserDefaultsInterface = UserDefaults.standard
+    private lazy var engagementNotificationHelper = EngagementNotificationHelper(prefs: profile.prefs)
 
     func setupUserScript(for controller: WKUserContentController) {
         guard let path = Bundle.main.path(forResource: "FxASignIn", ofType: "js"),
@@ -262,11 +261,11 @@ extension FxAWebViewModel {
             NotificationManager().requestAuthorization { granted, error in
                 guard error == nil else { return }
                 if granted {
-                    if self.userDefaults.object(forKey: PrefsKeys.Notifications.SyncNotifications) == nil {
-                        self.userDefaults.set(granted, forKey: PrefsKeys.Notifications.SyncNotifications)
+                    if self.profile.prefs.boolForKey(PrefsKeys.Notifications.SyncNotifications) == nil {
+                        self.profile.prefs.setBool(granted, forKey: PrefsKeys.Notifications.SyncNotifications)
                     }
-                    if self.userDefaults.object(forKey: PrefsKeys.Notifications.TipsAndFeaturesNotifications) == nil {
-                        self.userDefaults.set(granted, forKey: PrefsKeys.Notifications.TipsAndFeaturesNotifications)
+                    if self.profile.prefs.boolForKey(PrefsKeys.Notifications.TipsAndFeaturesNotifications) == nil {
+                        self.profile.prefs.setBool(granted, forKey: PrefsKeys.Notifications.TipsAndFeaturesNotifications)
                     }
                     NotificationCenter.default.post(name: .RegisterForPushNotifications, object: nil)
 

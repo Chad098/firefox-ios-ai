@@ -39,8 +39,8 @@ class BadgeWithBackdrop {
     }
 
     func show(_ visible: Bool) {
-        badge.isHidden = !visible
-        backdrop.isHidden = !visible
+        badge.isHidden = visible == false
+        backdrop.isHidden = visible == false
     }
 
     func add(toParent parent: UIView) {

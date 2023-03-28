@@ -205,11 +205,6 @@ class TabsButton: UIButton {
 
 extension TabsButton: NotificationThemeable {
     func applyTheme() {
-        borderView.tintColor = UIColor.legacyTheme.browser.tint
-        if inTopTabs {
-            textColor = UIColor.legacyTheme.topTabs.buttonTint
-        } else {
-            textColor = UIColor.legacyTheme.browser.tint
-        }
+        textColor = inTopTabs ? .legacyTheme.topTabs.buttonTint : .legacyTheme.browser.tint
     }
 }

@@ -4,6 +4,7 @@
 
 import UIKit
 import Shared
+import TTTAttributedLabel
 
 protocol TabToolbarProtocol: AnyObject {
     var tabToolbarDelegate: TabToolbarDelegate? { get set }
@@ -16,6 +17,7 @@ protocol TabToolbarProtocol: AnyObject {
     var forwardButton: ToolbarButton { get }
     var backButton: ToolbarButton { get }
     var multiStateButton: ToolbarButton { get }
+    var summaryButton: ToolbarButton? { get }
     var actionButtons: [NotificationThemeable & UIButton] { get }
 
     func updateBackStatus(_ canGoBack: Bool)
@@ -25,6 +27,13 @@ protocol TabToolbarProtocol: AnyObject {
     func updateTabCount(_ count: Int, animated: Bool)
     func privateModeBadge(visible: Bool)
     func warningMenuBadge(setVisible: Bool)
+    func updateSummaryButton(enabled: Bool)
+}
+
+extension TabToolbarProtocol {
+    func updateSummaryButton(enabled: Bool) {
+        summaryButton?.isEnabled = enabled
+    }
 }
 
 protocol TabToolbarDelegate: AnyObject {
@@ -42,6 +51,7 @@ protocol TabToolbarDelegate: AnyObject {
     func tabToolbarDidLongPressTabs(_ tabToolbar: TabToolbarProtocol, button: UIButton)
     func tabToolbarDidPressSearch(_ tabToolbar: TabToolbarProtocol, button: UIButton)
     func tabToolbarDidPressAddNewTab(_ tabToolbar: TabToolbarProtocol, button: UIButton)
+    func tabToolbarDidPressSummary(_ tabToolbar: TabToolbarProtocol, button: UIButton)
 }
 
 enum MiddleButtonState {
@@ -143,9 +153,23 @@ open class TabToolbarHelper: NSObject {
         toolbar.bookmarksButton.accessibilityLabel = .AppMenu.Toolbar.BookmarksButtonAccessibilityLabel
         toolbar.bookmarksButton.addTarget(self, action: #selector(didClickLibrary), for: .touchUpInside)
         toolbar.bookmarksButton.accessibilityIdentifier = "TabToolbar.libraryButton"
+        
+        configureSummaryButton()
+        updateAppearance()
+    }
+    
+    // MARK: - Private
+    private func configureSummaryButton() {
+        toolbar.summaryButton?.addTarget(self, action: #selector(didClickSummaryTab), for: .touchUpInside)
+        toolbar.summaryButton?.setImage(UIImage(systemName: "pencil.and.outline")?.withRenderingMode(.alwaysTemplate), for: .normal)
+    }
+    
+    private func updateAppearance() {
         setTheme(forButtons: toolbar.actionButtons)
+        toolbar.summaryButton?.layer.borderColor = UIColor.clear.cgColor
     }
 
+    // MARK: - Public
     func didClickBack() {
         toolbar.tabToolbarDelegate?.tabToolbarDidPressBack(toolbar, button: toolbar.backButton)
         TelemetryWrapper.recordEvent(category: .action, method: .tap, object: .navigateTabHistoryBack)
@@ -160,6 +184,11 @@ open class TabToolbarHelper: NSObject {
 
     func didClickTabs() {
         toolbar.tabToolbarDelegate?.tabToolbarDidPressTabs(toolbar, button: toolbar.tabsButton)
+    }
+    
+    func didClickSummaryTab() {
+        guard let button = toolbar.summaryButton else { return }
+        toolbar.tabToolbarDelegate?.tabToolbarDidPressSummary(toolbar, button: button)
     }
 
     func didLongPressTabs(_ recognizer: UILongPressGestureRecognizer) {

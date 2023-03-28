@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0
 
 import Foundation
-import Common
 import Shared
 import Storage
 
@@ -41,7 +40,6 @@ class SearchEngines {
     private var engineProvider: SearchEngineProvider
 
     weak var delegate: SearchEngineDelegate?
-    private var logger: Logger = DefaultLogger.shared
 
     init(prefs: Prefs, files: FileAccessor, engineProvider: SearchEngineProvider = DefaultSearchEngineProvider()) {
         self.prefs = prefs
@@ -174,31 +172,11 @@ class SearchEngines {
     }
 
     private lazy var customEngines: [OpenSearchEngine] = {
-        if let data = try? Data(contentsOf: URL(fileURLWithPath: customEngineFilePath)),
-           let unarchivedObject = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data),
-           let customEngines = unarchivedObject as? [OpenSearchEngine] {
-            return customEngines
-        } else {
-            return []
-        }
+        return NSKeyedUnarchiver.unarchiveObject(withFile: customEngineFilePath) as? [OpenSearchEngine] ?? []
     }()
 
     private func saveCustomEngines() {
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: customEngines, requiringSecureCoding: false)
-
-            do {
-                try data.write(to: URL(fileURLWithPath: customEngineFilePath))
-            } catch {
-                logger.log("Error writing data to file: \(error.localizedDescription)",
-                           level: .debug,
-                           category: .images)
-            }
-        } catch {
-            logger.log("Error archiving custom engines: \(error.localizedDescription)",
-                       level: .debug,
-                       category: .images)
-        }
+        NSKeyedArchiver.archiveRootObject(customEngines, toFile: customEngineFilePath)
     }
 }
 

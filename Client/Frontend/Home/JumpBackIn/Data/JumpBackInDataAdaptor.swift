@@ -22,7 +22,7 @@ actor JumpBackInDataAdaptorImplementation: JumpBackInDataAdaptor, FeatureFlaggab
 
     nonisolated let notificationCenter: NotificationProtocol
     private let profile: Profile
-    private let tabManager: TabManager
+    private let tabManager: TabManagerProtocol
     private var recentTabs: [Tab] = [Tab]()
     private var recentGroups: [ASGroup<Tab>]?
     private var mostRecentSyncedTab: JumpBackInSyncedTab?
@@ -34,7 +34,7 @@ actor JumpBackInDataAdaptorImplementation: JumpBackInDataAdaptor, FeatureFlaggab
 
     // MARK: Init
     init(profile: Profile,
-         tabManager: TabManager,
+         tabManager: TabManagerProtocol,
          mainQueue: DispatchQueueInterface = DispatchQueue.main,
          notificationCenter: NotificationProtocol = NotificationCenter.default) {
         self.profile = profile

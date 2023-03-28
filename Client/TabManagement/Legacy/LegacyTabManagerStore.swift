@@ -70,17 +70,13 @@ class LegacyTabManagerStoreImplementation: LegacyTabManagerStore, FeatureFlaggab
 
     func preserveScreenshot(forTab tab: Tab?) {
         if let tab = tab, let screenshot = tab.screenshot, let uuidString = tab.screenshotUUID?.uuidString {
-            Task {
-                try await imageStore?.saveImageForKey(uuidString, image: screenshot)
-            }
+            imageStore?.put(uuidString, image: screenshot)
         }
     }
 
     func removeScreenshot(forTab tab: Tab?) {
         if let tab = tab, let screenshotUUID = tab.screenshotUUID {
-            Task {
-                await imageStore?.deleteImageForKey(screenshotUUID.uuidString)
-            }
+            _ = imageStore?.removeImage(screenshotUUID.uuidString)
         }
     }
 
@@ -239,11 +235,7 @@ class LegacyTabManagerStoreImplementation: LegacyTabManagerStore, FeatureFlaggab
         }
 
         // Clean up any screenshots that are no longer associated with a tab.
-        let savedUUIDsCopy = savedUUIDs
-        Task {
-            try await imageStore?.clearAllScreenshotsExcluding(savedUUIDsCopy)
-        }
-
+        _ = imageStore?.clearExcluding(savedUUIDs)
         return savedTabs.isEmpty ? nil : savedTabs
     }
 
@@ -266,13 +258,7 @@ class LegacyTabManagerStoreImplementation: LegacyTabManagerStore, FeatureFlaggab
 // MARK: Tests
 extension LegacyTabManagerStoreImplementation {
     func testTabOnDisk() -> [LegacySavedTab] {
-        guard AppConstants.isRunningTest else {
-            logger.log("This method is being called in NON-TESTING code. Do NOT do this!",
-                       level: .fatal,
-                       category: .tabs)
-            fatalError()
-        }
-
+        assert(AppConstants.isRunningTest)
         return tabs
     }
 }

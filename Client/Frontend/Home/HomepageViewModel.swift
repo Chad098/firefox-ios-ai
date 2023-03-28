@@ -101,7 +101,7 @@ class HomepageViewModel: FeatureFlaggable {
     // MARK: - Initializers
     init(profile: Profile,
          isPrivate: Bool,
-         tabManager: TabManager,
+         tabManager: TabManagerProtocol,
          urlBar: URLBarViewProtocol,
          nimbus: FxNimbus = FxNimbus.shared,
          isZeroSearch: Bool = false,

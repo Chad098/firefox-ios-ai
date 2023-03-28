@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         localName: "profile",
         syncDelegate: UIApplication.shared.syncDelegate
     )
-    lazy var tabManager: TabManager = TabManagerImplementation(
+    lazy var tabManager: TabManager = TabManager(
         profile: profile,
         imageStore: DiskImageStore(
             files: profile.files,
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var widgetManager: TopSitesWidgetManager?
     private var menuBuilderHelper: MenuBuilderHelper?
 
-    private lazy var engagementNotificationHelper = EngagementNotificationHelper()
+    private lazy var engagementNotificationHelper = EngagementNotificationHelper(prefs: profile.prefs)
 
     func application(
         _ application: UIApplication,
