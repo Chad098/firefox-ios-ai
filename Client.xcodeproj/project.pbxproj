@@ -621,6 +621,22 @@
 		8AF0CFF527A0B0ED00C1A4A2 /* QuickActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF0CFF427A0B0ED00C1A4A2 /* QuickActionsTests.swift */; };
 		8AFA263227B6E9AB00D0C33B /* ToolbarBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA263127B6E9AB00D0C33B /* ToolbarBadge.swift */; };
 		8AFE4C2127480D0C00B97C65 /* TabTrayViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE4C2027480D0B00B97C65 /* TabTrayViewControllerTests.swift */; };
+		8B133ECD29D36A1700DAB643 /* ChatGPTConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133ECC29D36A1700DAB643 /* ChatGPTConnector.swift */; };
+		8B133ECF29D36A3000DAB643 /* ChatGPTConnector+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133ECE29D36A3000DAB643 /* ChatGPTConnector+Model.swift */; };
+		8B133ED129D36A4800DAB643 /* ChatGPTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133ED029D36A4800DAB643 /* ChatGPTError.swift */; };
+		8B133ED329D36A5900DAB643 /* ChatGPTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133ED229D36A5900DAB643 /* ChatGPTResponse.swift */; };
+		8B133ED529D36A6F00DAB643 /* Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133ED429D36A6F00DAB643 /* Closures.swift */; };
+		8B133ED729D36A8100DAB643 /* DownloadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133ED629D36A8100DAB643 /* DownloadState.swift */; };
+		8B133ED929D36A9500DAB643 /* UITableView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133ED829D36A9500DAB643 /* UITableView+Helper.swift */; };
+		8B133EDB29D36AAD00DAB643 /* ChatGPTSummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133EDA29D36AAD00DAB643 /* ChatGPTSummaryPresenter.swift */; };
+		8B133EDD29D36AC200DAB643 /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133EDC29D36AC200DAB643 /* SummaryPresenter.swift */; };
+		8B133EDF29D36AE100DAB643 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133EDE29D36AE100DAB643 /* Tweet.swift */; };
+		8B133EE129D36B1200DAB643 /* ChatGPT.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B133EE029D36B1200DAB643 /* ChatGPT.xcassets */; };
+		8B133EE329D36B4700DAB643 /* TweetSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133EE229D36B4700DAB643 /* TweetSummaryViewController.swift */; };
+		8B133EE529D36B5000DAB643 /* TweetSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B133EE429D36B5000DAB643 /* TweetSummaryViewController.xib */; };
+		8B133EE729D36B8600DAB643 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B133EE629D36B8600DAB643 /* TweetTableViewCell.swift */; };
+		8B133EE929D36B8E00DAB643 /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B133EE829D36B8E00DAB643 /* TweetTableViewCell.xib */; };
+		8B57744929D47744000CD07B /* BrowserViewController+SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57744829D47744000CD07B /* BrowserViewController+SummaryPresenter.swift */; };
 		8D8251811F4DE67F00780643 /* AdvancedAccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8251721F4DE67E00780643 /* AdvancedAccountSettingViewController.swift */; };
 		9609F4CA26B57CE800F81493 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9609F4C926B57CE800F81493 /* Calendar+Extension.swift */; };
 		9614BF4228A53FDF00D3F7EA /* ContextualHintEligibilityUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9614BF4028A53F7C00D3F7EA /* ContextualHintEligibilityUtilityTests.swift */; };
@@ -1253,6 +1269,7 @@
 		F018F84C2719AE8300B9A52D /* ThemedDefaultNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018F84B2719AE8300B9A52D /* ThemedDefaultNavigationController.swift */; };
 		F35B8D2B1D6380EA008E3D61 /* SessionRestore.html in Resources */ = {isa = PBXBuildFile; fileRef = F35B8D2A1D6380EA008E3D61 /* SessionRestore.html */; };
 		F35B8D2D1D6383E9008E3D61 /* SessionRestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B8D2C1D6383E9008E3D61 /* SessionRestoreHelper.swift */; };
+		F74871390B6E9EB8249FA6C1 /* Pods_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F96F60470850BB3A1E862F /* Pods_Client.framework */; };
 		F80DF73F27034F6400E4C37D /* DynamicFontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65075531E37F6FC006961AC /* DynamicFontHelper.swift */; };
 		F80DF7412703BC8E00E4C37D /* CredentialPasscodeRequirementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80DF7402703BC8E00E4C37D /* CredentialPasscodeRequirementViewController.swift */; };
 		F80DF74B270CB9CA00E4C37D /* AppAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D89171C8647420006EA35 /* AppAuthenticator.swift */; };
@@ -1621,10 +1638,12 @@
 		01724472B0A3FC847975C573 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ClearPrivateData.strings; sourceTree = "<group>"; };
 		019E45BAB9513E1AFE642AF5 /* ml */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/AuthenticationManager.strings; sourceTree = "<group>"; };
 		01C242DCBB36514BBB04614C /* pa-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pa-IN"; path = "pa-IN.lproj/ClearPrivateDataConfirm.strings"; sourceTree = "<group>"; };
+		0210C0C2E94C27C404A6B7ED /* Pods-Client.fennec_enterprise.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Client.fennec_enterprise.xcconfig"; path = "Target Support Files/Pods-Client/Pods-Client.fennec_enterprise.xcconfig"; sourceTree = "<group>"; };
 		023441B79169F049ED2D670E /* ast */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ast; path = ast.lproj/ClearHistoryConfirm.strings; sourceTree = "<group>"; };
 		028548E69B6A73A79FE33CEA /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = "tr.lproj/Default Browser.strings"; sourceTree = "<group>"; };
 		029845A6851078DF2B6F54AC /* jv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = jv; path = jv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		02AC4B8B9F7F85FFC21601B5 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Menu.strings"; sourceTree = "<group>"; };
+		02C3771A37F7EC43426B4B2D /* Pods-Client.firefox.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Client.firefox.xcconfig"; path = "Target Support Files/Pods-Client/Pods-Client.firefox.xcconfig"; sourceTree = "<group>"; };
 		02C94BE0922C110AFF6944E3 /* bo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bo; path = bo.lproj/ClearPrivateDataConfirm.strings; sourceTree = "<group>"; };
 		02E547BF89DA742677E367E6 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		02FC4A06A948593BE97BC508 /* zh-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-TW"; path = "zh-TW.lproj/LoginManager.strings"; sourceTree = "<group>"; };
@@ -1819,6 +1838,7 @@
 		195E41BAB431ABB7A600D1AF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/Default Browser.strings"; sourceTree = "<group>"; };
 		19BD4ECBAB3867D7FFABD278 /* dsb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = dsb; path = dsb.lproj/Intro.strings; sourceTree = "<group>"; };
 		19CC47E1AD429555904148E6 /* an */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = an; path = an.lproj/Search.strings; sourceTree = "<group>"; };
+		19F96F60470850BB3A1E862F /* Pods_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7247BCAFD0446FBE247CCA /* ne-NP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ne-NP"; path = "ne-NP.lproj/Menu.strings"; sourceTree = "<group>"; };
 		1A9E45AFB6CA6B5F1B760337 /* gd */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gd; path = gd.lproj/Storage.strings; sourceTree = "<group>"; };
 		1AC74B5BBF452B60564AA754 /* uz */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uz; path = uz.lproj/FindInPage.strings; sourceTree = "<group>"; };
@@ -3372,6 +3392,7 @@
 		6A574F2FAB02381D22FD47B4 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/LoginManager.strings; sourceTree = "<group>"; };
 		6A5F591C28627C0100FABA92 /* TabManagerNavDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManagerNavDelegateTests.swift; sourceTree = "<group>"; };
 		6A694C35BF15DBBE61D7DB77 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Search.strings; sourceTree = "<group>"; };
+		6A73817950E03C1DE514BCC2 /* Pods-Client.fennec.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Client.fennec.xcconfig"; path = "Target Support Files/Pods-Client/Pods-Client.fennec.xcconfig"; sourceTree = "<group>"; };
 		6A8B40A7B8B0933B706C84B0 /* or */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = or; path = or.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6A954888A18B54ED87980F19 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Intro.strings; sourceTree = "<group>"; };
 		6ACB550B28633860007A6ABD /* TabManagerNavDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManagerNavDelegate.swift; sourceTree = "<group>"; };
@@ -3785,7 +3806,23 @@
 		8AF0CFF427A0B0ED00C1A4A2 /* QuickActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionsTests.swift; sourceTree = "<group>"; };
 		8AFA263127B6E9AB00D0C33B /* ToolbarBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBadge.swift; sourceTree = "<group>"; };
 		8AFE4C2027480D0B00B97C65 /* TabTrayViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabTrayViewControllerTests.swift; sourceTree = "<group>"; };
+		8B133ECC29D36A1700DAB643 /* ChatGPTConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTConnector.swift; sourceTree = "<group>"; };
+		8B133ECE29D36A3000DAB643 /* ChatGPTConnector+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatGPTConnector+Model.swift"; sourceTree = "<group>"; };
+		8B133ED029D36A4800DAB643 /* ChatGPTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTError.swift; sourceTree = "<group>"; };
+		8B133ED229D36A5900DAB643 /* ChatGPTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTResponse.swift; sourceTree = "<group>"; };
+		8B133ED429D36A6F00DAB643 /* Closures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closures.swift; sourceTree = "<group>"; };
+		8B133ED629D36A8100DAB643 /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
+		8B133ED829D36A9500DAB643 /* UITableView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Helper.swift"; sourceTree = "<group>"; };
+		8B133EDA29D36AAD00DAB643 /* ChatGPTSummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTSummaryPresenter.swift; sourceTree = "<group>"; };
+		8B133EDC29D36AC200DAB643 /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
+		8B133EDE29D36AE100DAB643 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		8B133EE029D36B1200DAB643 /* ChatGPT.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ChatGPT.xcassets; sourceTree = "<group>"; };
+		8B133EE229D36B4700DAB643 /* TweetSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSummaryViewController.swift; sourceTree = "<group>"; };
+		8B133EE429D36B5000DAB643 /* TweetSummaryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetSummaryViewController.xib; sourceTree = "<group>"; };
+		8B133EE629D36B8600DAB643 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
+		8B133EE829D36B8E00DAB643 /* TweetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetTableViewCell.xib; sourceTree = "<group>"; };
 		8B3245D190D4FA80C3B46EC8 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Search.strings"; sourceTree = "<group>"; };
+		8B57744829D47744000CD07B /* BrowserViewController+SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowserViewController+SummaryPresenter.swift"; sourceTree = "<group>"; };
 		8B674438A5487ABCD2DD7CA5 /* ses */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ses; path = ses.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8B6C441B9DAA1DDC100358D0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/3DTouchActions.strings; sourceTree = "<group>"; };
 		8B8B46F687378F099BA6A2D1 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Search.strings; sourceTree = "<group>"; };
@@ -4154,6 +4191,7 @@
 		B4EB42918E2D55A8A2DF4EAF /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/HistoryPanel.strings; sourceTree = "<group>"; };
 		B51D481ABEE8E319B151DC01 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = az.lproj/AuthenticationManager.strings; sourceTree = "<group>"; };
 		B5374969BC045222708C3A5E /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/ClearPrivateDataConfirm.strings"; sourceTree = "<group>"; };
+		B544E2CB68B3A739B1810BDB /* Pods-Client.firefoxbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Client.firefoxbeta.xcconfig"; path = "Target Support Files/Pods-Client/Pods-Client.firefoxbeta.xcconfig"; sourceTree = "<group>"; };
 		B54C45F781143B4CACBE77B9 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/LoginManager.strings"; sourceTree = "<group>"; };
 		B5654A9EAD0571FF0C3D6FB7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LoginManager.strings; sourceTree = "<group>"; };
 		B56D4002ADB31E1FD32A2B51 /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -5682,6 +5720,7 @@
 				433F87CE2788EAB600693368 /* GCDWebServers in Frameworks */,
 				7B8A47F61D01D3B400C07734 /* PassKit.framework in Frameworks */,
 				5A8FD0EC293A7D5E00333AA7 /* SnapKit in Frameworks */,
+				F74871390B6E9EB8249FA6C1 /* Pods_Client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6291,6 +6330,17 @@
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};
+		327D56BC220A18314F1DED60 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A73817950E03C1DE514BCC2 /* Pods-Client.fennec.xcconfig */,
+				0210C0C2E94C27C404A6B7ED /* Pods-Client.fennec_enterprise.xcconfig */,
+				02C3771A37F7EC43426B4B2D /* Pods-Client.firefox.xcconfig */,
+				B544E2CB68B3A739B1810BDB /* Pods-Client.firefoxbeta.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		392ED7D51D0AEEEE009D9B62 /* Accessors */ = {
 			isa = PBXGroup;
 			children = (
@@ -6655,6 +6705,7 @@
 				DAD46F3324A1606C001B3967 /* WidgetKit.framework */,
 				DAD46F3524A1606C001B3967 /* SwiftUI.framework */,
 				F8324A062649A188007E4BFA /* AuthenticationServices.framework */,
+				19F96F60470850BB3A1E862F /* Pods_Client.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -7026,6 +7077,60 @@
 				8AD08D1627E91AC800B8E907 /* TabsQuantityTelemetryTests.swift */,
 			);
 			path = TabManagement;
+			sourceTree = "<group>";
+		};
+		8B133EBF29D369A300DAB643 /* ChatGPT */ = {
+			isa = PBXGroup;
+			children = (
+				8B133EC029D369B000DAB643 /* Connector */,
+				8B133EC129D369B800DAB643 /* Helpers */,
+				8B133EC329D369C500DAB643 /* Presenter */,
+				8B133EC229D369BF00DAB643 /* UI */,
+			);
+			path = ChatGPT;
+			sourceTree = "<group>";
+		};
+		8B133EC029D369B000DAB643 /* Connector */ = {
+			isa = PBXGroup;
+			children = (
+				8B133ECC29D36A1700DAB643 /* ChatGPTConnector.swift */,
+				8B133ECE29D36A3000DAB643 /* ChatGPTConnector+Model.swift */,
+				8B133ED029D36A4800DAB643 /* ChatGPTError.swift */,
+				8B133ED229D36A5900DAB643 /* ChatGPTResponse.swift */,
+			);
+			path = Connector;
+			sourceTree = "<group>";
+		};
+		8B133EC129D369B800DAB643 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8B133ED429D36A6F00DAB643 /* Closures.swift */,
+				8B133ED629D36A8100DAB643 /* DownloadState.swift */,
+				8B133ED829D36A9500DAB643 /* UITableView+Helper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8B133EC229D369BF00DAB643 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8B133EE029D36B1200DAB643 /* ChatGPT.xcassets */,
+				8B133EE229D36B4700DAB643 /* TweetSummaryViewController.swift */,
+				8B133EE429D36B5000DAB643 /* TweetSummaryViewController.xib */,
+				8B133EE629D36B8600DAB643 /* TweetTableViewCell.swift */,
+				8B133EE829D36B8E00DAB643 /* TweetTableViewCell.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		8B133EC329D369C500DAB643 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8B133EDA29D36AAD00DAB643 /* ChatGPTSummaryPresenter.swift */,
+				8B133EDC29D36AC200DAB643 /* SummaryPresenter.swift */,
+				8B133EDE29D36AE100DAB643 /* Tweet.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		9614BF3F28A53F2000D3F7EA /* ContextualHints */ = {
@@ -7621,14 +7726,15 @@
 		C8F457A61F1FD75A000CB895 /* BrowserViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EBE26B4E220C959D00D1D99A /* BrowserViewController+TabToolbarDelegate.swift */,
-				EB1C84B6212EFFBF001489DF /* BrowserViewController+ReaderMode.swift */,
-				EBFDB787211C83A5005CCA2F /* BrowserViewController+FindInPage.swift */,
 				D0625CA7208FC47A0081F3B2 /* BrowserViewController+DownloadQueueDelegate.swift */,
+				EBFDB787211C83A5005CCA2F /* BrowserViewController+FindInPage.swift */,
 				C8F457A91F1FDD9B000CB895 /* BrowserViewController+KeyCommands.swift */,
+				EB1C84B6212EFFBF001489DF /* BrowserViewController+ReaderMode.swift */,
+				8B57744829D47744000CD07B /* BrowserViewController+SummaryPresenter.swift */,
+				EBE26B4E220C959D00D1D99A /* BrowserViewController+TabToolbarDelegate.swift */,
 				D0C95EF5201A55A800E4E51C /* BrowserViewController+UIDropInteractionDelegate.swift */,
-				C8F457A71F1FD75A000CB895 /* BrowserViewController+WebViewDelegates.swift */,
 				434E733625EED32E006D3BDE /* BrowserViewController+URLBarDelegate.swift */,
+				C8F457A71F1FD75A000CB895 /* BrowserViewController+WebViewDelegates.swift */,
 				DAE6DF1A29AD78DA0094BD1B /* BrowserViewController+ZoomPage.swift */,
 			);
 			path = BrowserViewController;
@@ -8522,30 +8628,32 @@
 		F84B21B51A090F8100AAB793 = {
 			isa = PBXGroup;
 			children = (
-				962C6C39297054A700354BE8 /* Package.swift */,
-				962C6C3F2971F5D400354BE8 /* Dangerfile.swift */,
-				962C6C3B297054EC00354BE8 /* Sources */,
-				5A65BE172928619E00E841A7 /* BrowserKit */,
-				45D5EDC1292D636000311934 /* nimbus.fml.yaml */,
-				C8E2E80623D20FB3005AACE6 /* RustFxA */,
 				2FA435FC1ABB83B4008031D1 /* Account */,
+				5A65BE172928619E00E841A7 /* BrowserKit */,
+				8B133EBF29D369A300DAB643 /* ChatGPT */,
 				F84B21C01A090F8100AAB793 /* Client */,
 				EBB894E9219398E500EB91A0 /* content-blocker-lib-ios */,
-				F8708D1E1A0970990051AB07 /* Extensions */,
-				047F9B2A24E1FE1C00CD7DF7 /* WidgetKit */,
 				F8324A082649A188007E4BFA /* CredentialProvider */,
+				962C6C3F2971F5D400354BE8 /* Dangerfile.swift */,
+				F8708D1E1A0970990051AB07 /* Extensions */,
 				7B604FC11C496005006EEEC3 /* Frameworks */,
+				45D5EDC1292D636000311934 /* nimbus.fml.yaml */,
+				962C6C39297054A700354BE8 /* Package.swift */,
+				327D56BC220A18314F1DED60 /* Pods */,
 				F84B21BF1A090F8100AAB793 /* Products */,
 				D34DC84C1A16C40C00D49B7B /* Providers */,
 				39F99FC71E3A6DB700F353B4 /* Push */,
+				C8E2E80623D20FB3005AACE6 /* RustFxA */,
+				43BE578B278BA4D900491291 /* RustMozillaAppServices-Info.plist */,
 				E4E0BB141AFBC9E4008D6260 /* Shared */,
 				7B3632E71C29879300D12AF9 /* Snapshot */,
+				962C6C3B297054EC00354BE8 /* Sources */,
 				2FCAE21B1ABB51F800877008 /* Storage */,
 				28CE83B91A1D1D3200576538 /* Sync */,
 				E69DB0761E97DEA9008A67E6 /* SyncTelemetry */,
-				28CE83EF1A1D246900576538 /* Third-Party Source */,
 				E15A8B2B286CFD48004BB2B8 /* Tests */,
-				43BE578B278BA4D900491291 /* RustMozillaAppServices-Info.plist */,
+				28CE83EF1A1D246900576538 /* Third-Party Source */,
+				047F9B2A24E1FE1C00CD7DF7 /* WidgetKit */,
 			);
 			sourceTree = "<group>";
 		};
@@ -9216,8 +9324,6 @@
 				E6F9653A1B2F1D330034B023 /* PBXTargetDependency */,
 			);
 			name = SharedTests;
-			packageProductDependencies = (
-			);
 			productName = SharedTests;
 			productReference = E6F9650C1B2F1CF20034B023 /* SharedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -9250,6 +9356,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F84B21DD1A090F8100AAB793 /* Build configuration list for PBXNativeTarget "Client" */;
 			buildPhases = (
+				05E745FF33794B916DC8CD16 /* [CP] Check Pods Manifest.lock */,
 				C874A4E327F62C5B006F54E5 /* Swiftlint */,
 				5FA2232B27F6FA00005B3D87 /* Glean SDK Generator Script */,
 				5FA2232C27F6FA69005B3D87 /* Nimbus Feature Manifest Generator Script */,
@@ -9260,6 +9367,7 @@
 				E6639F191BF11E3A002D0853 /* Conditionally Add Settings Bundle */,
 				E6B09CD31C74EEDB00C63FA1 /* Copy Frameworks */,
 				4368F81027955AE80013419B /* ShellScript */,
+				3531086F401DF3AC6A184151 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9759,6 +9867,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39D056382665235700FBEE59 /* initial_experiments.json in Resources */,
+				8B133EE129D36B1200DAB643 /* ChatGPT.xcassets in Resources */,
 				C8B0F5F8283B7D38007AE65D /* pocketsponsoredfeed.json in Resources */,
 				D38A1EE01CB458EC0080C842 /* CertError.html in Resources */,
 				8AEE62CB2756BA34003207D1 /* DownloadHelper.js in Resources */,
@@ -9792,6 +9901,7 @@
 				43175DB626B8774D00C41C31 /* Ads.js in Resources */,
 				D0FCF8081FE4772D004A7995 /* MainFrameAtDocumentStart.js in Resources */,
 				EBC9D38722D4D56F0011D881 /* disconnect-block-cookies-content.json in Resources */,
+				8B133EE529D36B5000DAB643 /* TweetSummaryViewController.xib in Resources */,
 				D30684F11C84F12A002D8D82 /* SearchPlugins in Resources */,
 				8A5CDEED27E510F500CC60FF /* pocketglobalfeed.json in Resources */,
 				74821FFE1DB6D3AC00EEEA72 /* MailSchemes.plist in Resources */,
@@ -9805,6 +9915,7 @@
 				E1AF3561286DE5F800960045 /* Smoketest4.xctestplan in Resources */,
 				EB84945722D4FA8A0004C2E2 /* disconnect-block-fingerprinting.json in Resources */,
 				8A2B1A5D28216C4D0061216B /* Debug.xcconfig in Resources */,
+				8B133EE929D36B8E00DAB643 /* TweetTableViewCell.xib in Resources */,
 				0BA1E00E1B03FB0B007675AF /* NetError.html in Resources */,
 				23BEA768251A99ED00A014BF /* NewYorkMedium-BoldItalic.otf in Resources */,
 				E4A961381AC06FA50069AD6F /* ReaderViewLoading.html in Resources */,
@@ -9858,6 +9969,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		05E745FF33794B916DC8CD16 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Client-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3531086F401DF3AC6A184151 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Client/Pods-Client-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Client/Pods-Client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		43338D07278F722700A23914 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -10553,6 +10704,7 @@
 				45D5EDD2292D89A200311934 /* PinnedSite.swift in Sources */,
 				8A4AC0EC28C929D700439F83 /* URLSessionProtocol.swift in Sources */,
 				5FC276552894AEFF00AF2721 /* LibraryPanelHelper.swift in Sources */,
+				8B133EDD29D36AC200DAB643 /* SummaryPresenter.swift in Sources */,
 				602A2B9827F6256200C3CB78 /* FxNimbus.swift in Sources */,
 				602A2B9727F6243A00C3CB78 /* Metrics.swift in Sources */,
 				E1CD81C5290C6D5800124B27 /* HelpView.swift in Sources */,
@@ -10624,6 +10776,7 @@
 				EB1C84BF212EFFBF001489DF /* BrowserViewController+ReaderMode.swift in Sources */,
 				96D95016270238500079D39D /* Throttler.swift in Sources */,
 				8A93080B27C01AD60052167D /* SingleActionViewModel.swift in Sources */,
+				8B133ED129D36A4800DAB643 /* ChatGPTError.swift in Sources */,
 				8A7368AD27924AAF005D7704 /* CanRemoveQuickActionBookmark.swift in Sources */,
 				8A0621B829428FBD005D1EFD /* OpenTabNotificationObject.swift in Sources */,
 				C8D0D6F2281C182D00AFAED9 /* FeatureFlagUserPrefsMigrationUtility.swift in Sources */,
@@ -10631,6 +10784,7 @@
 				C87DC85C27B2C94D006EFCE2 /* LegacyWallpaperResourceManager.swift in Sources */,
 				E4B423DD1ABA0318007E66C8 /* ReaderModeHandlers.swift in Sources */,
 				D308E4E41A5306F500842685 /* SearchEngines.swift in Sources */,
+				8B133EE729D36B8600DAB643 /* TweetTableViewCell.swift in Sources */,
 				3BCE6D3C1CEB9E4D0080928C /* ThirdPartySearchAlerts.swift in Sources */,
 				E195440528A5AFDE00304CF0 /* BottomSheetViewController.swift in Sources */,
 				E13F8C342928194800BDC8B4 /* PhotonActionSheetSiteHeaderView.swift in Sources */,
@@ -10696,6 +10850,7 @@
 				E15DE7C2293A7AED00B32667 /* PhotonActionSheetLineSeparator.swift in Sources */,
 				43BDBBFE2752FA8600254DE4 /* TabCell.swift in Sources */,
 				E60D03181D511398002FE3F6 /* SyncStatusResolver.swift in Sources */,
+				8B133EDB29D36AAD00DAB643 /* ChatGPTSummaryPresenter.swift in Sources */,
 				8A9CB41E2846F0BF00CC3A16 /* FadeScrollView.swift in Sources */,
 				C4E3983D1D21F1E7004E89BA /* TopTabCell.swift in Sources */,
 				210E0EBA298D9D6400BB4F33 /* OpenSearchEngine.swift in Sources */,
@@ -10704,6 +10859,7 @@
 				2178A6A0291454B5002EC290 /* ReaderModeThemeButton.swift in Sources */,
 				39F4C10A2045DB2E00746155 /* FocusHelper.swift in Sources */,
 				E4CD9F2D1A6DC91200318571 /* TabLocationView.swift in Sources */,
+				8B57744929D47744000CD07B /* BrowserViewController+SummaryPresenter.swift in Sources */,
 				8A161413282C2F8F00DDBB02 /* NimbusSponsoredTileLayer.swift in Sources */,
 				0BB5B2881AC0A2B90052877D /* SnackBar.swift in Sources */,
 				E1442FCF294782D9003680B0 /* UIView+Screenshot.swift in Sources */,
@@ -10735,6 +10891,7 @@
 				8AD08D1527E9198E00B8E907 /* TabsQuantityTelemetry.swift in Sources */,
 				1DA3CE6324EEE83200422BB2 /* LegacySavedTab+ConfigureExtension.swift in Sources */,
 				C87DC85627B2C8B0006EFCE2 /* LegacyWallpaperNetworkUtility.swift in Sources */,
+				8B133ED929D36A9500DAB643 /* UITableView+Helper.swift in Sources */,
 				E15DE7C4293A7B0F00B32667 /* PhotonActionSheetTitleHeaderView.swift in Sources */,
 				392ED7E61D0AEFEF009D9B62 /* HomePageAccessors.swift in Sources */,
 				8A0017C128A3FF6100FEFC8B /* MessageCardDataAdaptor.swift in Sources */,
@@ -10763,6 +10920,7 @@
 				8A471183287F6D9C00F5A6EA /* BookmarksPanelViewModel.swift in Sources */,
 				E1FF93E428A2E74600E6360E /* WallpaperSelectorViewModel.swift in Sources */,
 				D0C95E0E200FD3B200E4E51C /* PrintHelper.swift in Sources */,
+				8B133ECF29D36A3000DAB643 /* ChatGPTConnector+Model.swift in Sources */,
 				EB9854FF2422686F0040F24B /* AppDelegate+PushNotifications.swift in Sources */,
 				DFACBF85277B9B5B003D5F41 /* TopSitesRowCountSettingsController.swift in Sources */,
 				9614BF4428AD1C6700D3F7EA /* AccountSyncHandler.swift in Sources */,
@@ -10780,6 +10938,7 @@
 				D88FDAAF1F4E2BA000FD9709 /* PhotonActionSheetAnimator.swift in Sources */,
 				C83432FE26BAD30D00ABAAA6 /* EnhancedTrackingProtectionDetailsVC.swift in Sources */,
 				E698FFDA1B4AADF40001F623 /* TabScrollController.swift in Sources */,
+				8B133ECD29D36A1700DAB643 /* ChatGPTConnector.swift in Sources */,
 				D34510881ACF415700EC27F0 /* SearchLoader.swift in Sources */,
 				E1442FD4294782D9003680B0 /* URL+Mail.swift in Sources */,
 				9636D92827F5D72D00771F5E /* GleanPlumbMessageManager.swift in Sources */,
@@ -10819,6 +10978,7 @@
 				8A57519927AD80B800A84DBF /* ReaderModeStyleViewModel.swift in Sources */,
 				435D7CC5246209AA0043ACB9 /* IntroViewController.swift in Sources */,
 				C855728429AEA3C300AF32B0 /* SurveySurfaceViewModel.swift in Sources */,
+				8B133EE329D36B4700DAB643 /* TweetSummaryViewController.swift in Sources */,
 				CA4ACE4924C8C91600F55894 /* BreachAlertsDetailView.swift in Sources */,
 				C834ACD128D3ACA900203AD1 /* Blurrable.swift in Sources */,
 				D8EFFA0C1FF5B1FA001D3A09 /* NavigationRouter.swift in Sources */,
@@ -10833,6 +10993,7 @@
 				C8B0F5F4283B7CCE007AE65D /* PocketProvider.swift in Sources */,
 				D3972BF41C22412B00035B87 /* TitleActivityItemProvider.swift in Sources */,
 				D38A1BEE1A9FA2CA00F6A386 /* SiteTableViewController.swift in Sources */,
+				8B133ED729D36A8100DAB643 /* DownloadState.swift in Sources */,
 				7BA0601B1C0F4DE200DFADB6 /* TabPeekViewController.swift in Sources */,
 				D51EA5BA26406A0000334331 /* ExperimentsBranchesViewController.swift in Sources */,
 				C84655F728879EF100861B4A /* WallpaperManager.swift in Sources */,
@@ -10875,6 +11036,7 @@
 				D83822001FC7961D00303C12 /* DispatchQueueHelper.swift in Sources */,
 				EBC486992195F46B00CDA48D /* InternalSchemeHandler.swift in Sources */,
 				E18BAAFD28E4A44500098AE2 /* TopTabFader.swift in Sources */,
+				8B133ED529D36A6F00DAB643 /* Closures.swift in Sources */,
 				C8656D79270F866700E199EA /* CustomizeHomepageSectionCell.swift in Sources */,
 				C84655FB28879FC600861B4A /* WallpaperStorageUtility.swift in Sources */,
 				6025B10D267B6C5400F59F6B /* LoginRecordExtension.swift in Sources */,
@@ -11051,7 +11213,9 @@
 				D8FDEB57220CFE970069A582 /* UIImage+ImageEffects.m in Sources */,
 				EBB89506219398E500EB91A0 /* TabContentBlocker.swift in Sources */,
 				966206CD2698DE1E005C0A55 /* RecentlySavedViewModel.swift in Sources */,
+				8B133ED329D36A5900DAB643 /* ChatGPTResponse.swift in Sources */,
 				D3E8EF101B97BE69001900FB /* ClearPrivateDataTableViewController.swift in Sources */,
+				8B133EDF29D36AE100DAB643 /* Tweet.swift in Sources */,
 				C8F457AA1F1FDD9B000CB895 /* BrowserViewController+KeyCommands.swift in Sources */,
 				21357F2F294237D8004BF9FD /* RemoteTabsClientAndTabsDataSource.swift in Sources */,
 				59A68FD5260B8D520F890F4A /* ReaderPanel.swift in Sources */,
@@ -14904,6 +15068,7 @@
 		};
 		E448FC9E1AEE7A6000869B6C /* Firefox */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02C3771A37F7EC43426B4B2D /* Pods-Client.firefox.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -15202,6 +15367,7 @@
 		};
 		E6DCC2061DCBB6F100CEC4B7 /* Fennec_Enterprise */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0210C0C2E94C27C404A6B7ED /* Pods-Client.fennec_enterprise.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_Developer;
@@ -15451,6 +15617,7 @@
 		};
 		E6FCC42A1C40562400DF6113 /* FirefoxBeta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B544E2CB68B3A739B1810BDB /* Pods-Client.firefoxbeta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_Beta;
@@ -15940,6 +16107,7 @@
 		};
 		F84B21DE1A090F8100AAB793 /* Fennec */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A73817950E03C1DE514BCC2 /* Pods-Client.fennec.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_Developer;

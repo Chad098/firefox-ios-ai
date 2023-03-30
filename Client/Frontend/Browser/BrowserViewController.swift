@@ -69,6 +69,8 @@ class BrowserViewController: UIViewController {
 
     var surveySurfaceManager: SurveySurfaceManager?
     var contextHintVC: ContextualHintViewController
+    
+    var summaryController: TweetSummaryViewController?
 
     // To avoid presenting multiple times in same launch when forcing to show
     var hasPresentedUpgrade = false
@@ -160,14 +162,17 @@ class BrowserViewController: UIViewController {
     }
 
     fileprivate var shouldShowIntroScreen: Bool { profile.prefs.intForKey(PrefsKeys.IntroSeen) == nil }
-
+    
+    private(set) var summaryPresenter: SummaryPresenter
+    
     init(
         profile: Profile,
         tabManager: TabManager,
         themeManager: ThemeManager = AppContainer.shared.resolve(),
         ratingPromptManager: RatingPromptManager = AppContainer.shared.resolve(),
         downloadQueue: DownloadQueue = AppContainer.shared.resolve(),
-        logger: Logger = DefaultLogger.shared
+        logger: Logger = DefaultLogger.shared,
+        summaryPresenter: SummaryPresenter = ChatGPTSummaryPresenter()
     ) {
         self.profile = profile
         self.tabManager = tabManager
@@ -176,6 +181,7 @@ class BrowserViewController: UIViewController {
         self.readerModeCache = DiskReaderModeCache.sharedInstance
         self.downloadQueue = downloadQueue
         self.logger = logger
+        self.summaryPresenter = summaryPresenter
 
         let contextViewModel = ContextualHintViewModel(forHintType: .toolbarLocation,
                                                        with: profile)
@@ -205,6 +211,7 @@ class BrowserViewController: UIViewController {
         tabManager.addDelegate(self)
         tabManager.addNavigationDelegate(self)
         downloadQueue.delegate = self
+        summaryPresenter.delegate = self
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -323,6 +330,7 @@ class BrowserViewController: UIViewController {
            let webView = tab.webView {
             updateURLBarDisplayURL(tab)
             navigationToolbar.updateBackStatus(webView.canGoBack)
+            navigationToolbar.updateSummaryButton(enabled: webView.canGoBack)
             navigationToolbar.updateForwardStatus(webView.canGoForward)
         }
     }
@@ -1327,6 +1335,7 @@ class BrowserViewController: UIViewController {
                   let canGoBack = change?[.newKey] as? Bool
             else { break }
             navigationToolbar.updateBackStatus(canGoBack)
+            navigationToolbar.updateSummaryButton(enabled: canGoBack)
         case .canGoForward:
             guard tab === tabManager.selectedTab,
                   let canGoForward = change?[.newKey] as? Bool
@@ -2123,6 +2132,7 @@ extension BrowserViewController: TabManagerDelegate {
         updateFindInPageVisibility(visible: false, tab: previous)
         setupMiddleButtonStatus(isLoading: selected?.loading ?? false)
         navigationToolbar.updateBackStatus(selected?.canGoBack ?? false)
+        navigationToolbar.updateSummaryButton(enabled: selected?.canGoBack ?? false)
         navigationToolbar.updateForwardStatus(selected?.canGoForward ?? false)
         if let url = selected?.webView?.url, !InternalURL.isValid(url: url) {
             self.urlBar.updateProgressBar(Float(selected?.estimatedProgress ?? 0))
