@@ -6,7 +6,7 @@ import Foundation
 
 class ChatGPTConnector {
     private let model: Model
-    private let apiKey = "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" // needs to be stored securely
+    private let apiKey = "API_KEY" // needs to be stored securely
     private var task: URLSessionDataTask?
     
     init(model: Model = .davinci) {
