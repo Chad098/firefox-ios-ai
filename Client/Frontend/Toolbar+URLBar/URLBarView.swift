@@ -188,6 +188,8 @@ class URLBarView: UIView, URLBarViewProtocol, AlphaDimmable, TopBottomInterchang
         backButton.accessibilityIdentifier = AccessibilityIdentifiers.Browser.UrlBar.backButton
         return backButton
     }()
+    
+    var summaryButton: ToolbarButton? { nil }
 
     lazy var actionButtons: [NotificationThemeable & UIButton] = [
         self.tabsButton,

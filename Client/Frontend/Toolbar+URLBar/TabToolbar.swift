@@ -16,8 +16,19 @@ class TabToolbar: UIView {
     let bookmarksButton = ToolbarButton()
     let forwardButton = ToolbarButton()
     let backButton = ToolbarButton()
+    lazy var summaryButton: ToolbarButton? = .init()
     let multiStateButton = ToolbarButton()
-    let actionButtons: [NotificationThemeable & UIButton]
+    var actionButtons: [NotificationThemeable & UIButton] {
+        [
+            backButton,
+            forwardButton,
+            multiStateButton,
+            addNewTabButton,
+            tabsButton,
+            summaryButton,
+            appMenuButton
+        ].compactMap { $0 }
+    }
 
     private let privateModeBadge = BadgeWithBackdrop(imageName: ImageIdentifiers.privateModeBadge,
                                                      backdropCircleColor: UIColor.Defaults.MobilePrivatePurple)
@@ -30,7 +41,6 @@ class TabToolbar: UIView {
 
     // MARK: - Initializers
     private override init(frame: CGRect) {
-        actionButtons = [backButton, forwardButton, multiStateButton, addNewTabButton, tabsButton, appMenuButton]
         super.init(frame: frame)
         setupAccessibility()
 
@@ -74,6 +84,7 @@ class TabToolbar: UIView {
         tabsButton.accessibilityIdentifier = "TabToolbar.tabsButton"
         addNewTabButton.accessibilityIdentifier = "TabToolbar.addNewTabButton"
         appMenuButton.accessibilityIdentifier = AccessibilityIdentifiers.Toolbar.settingsMenuButton
+        summaryButton?.accessibilityIdentifier = "TabToolbar.tabsButton"
         accessibilityNavigationStyle = .combined
         accessibilityLabel = .TabToolbarNavigationToolbarAccessibilityLabel
     }
@@ -84,7 +95,7 @@ class TabToolbar: UIView {
 
     override func draw(_ rect: CGRect) {
         // No line when the search bar is on top of the toolbar
-        guard !isBottomSearchBar else { return }
+        guard isBottomSearchBar == false else { return }
 
         if let context = UIGraphicsGetCurrentContext() {
             drawLine(context, start: .zero, end: CGPoint(x: frame.width, y: 0))
@@ -110,7 +121,7 @@ extension TabToolbar: TabToolbarProtocol {
 
     func warningMenuBadge(setVisible: Bool) {
         // Disable other menu badges before showing the warning.
-        if !appMenuBadge.badge.isHidden { appMenuBadge.show(false) }
+        appMenuBadge.show(appMenuBadge.badge.isHidden == false)
         warningMenuBadge.show(setVisible)
     }
 
